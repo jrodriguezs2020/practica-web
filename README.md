@@ -1,2 +1,2 @@
 # practica-web
-Temá´ttica: 
+Temática: 
