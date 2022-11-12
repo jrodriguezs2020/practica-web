@@ -52,22 +52,8 @@
                 <h2 class="section-heading text-uppercase">Eventos disponibles</h2>
                 <br></br> <!-- salto de línea-->
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" onclick="alerta();">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Título del evento</div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="row" id="showEvents"> <!--muestra el array de eventos-->
+                
             </div>
         </div>
         <!-- Botón añadir evento-->
@@ -83,15 +69,15 @@
                 <div class="col-lg-8">
                     <div class="modal-body">
                         <div class="text-center">
-                            <h2 class="section-heading text-uppercase">Eventos disponibles</h2>
+                            <h2 class="section-heading text-uppercase">Título del evento</h2>
                             <br></br> <!-- salto de línea-->
                         </div>
                         <!-- Portfolio item 1-->
                         <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
                         <br />
                         <div class="text-center">
-                            <p class="text-center">Description</p>
-                            <p><strong>Price:</strong>€€</p>
+                            <p class="text-center">Descripción</p>
+                            <!--<p><strong>Price:</strong>€€</p>-->
                         </div>
                     </div>
                 </div>
@@ -99,16 +85,16 @@
         </div>
         <!-- Botón añadir evento-->
         <div class="btnAdd">
-            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" href="#addEvent">Añadir
+            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" href="#addPass">Añadir
                 entrada</button>
             <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal"
                 href="#addEvent">Modificar</button>
-            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" href="#addEvent">Volver
+            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="goback();">Volver
                 atrás</button>
         </div>
     </section>
 
-    <!-- About-->
+    <!-- About
     <section class="page-section" id="about">
         <div class="container">
             <div class="text-center">
@@ -160,6 +146,7 @@
             </ul>
         </div>
     </section>
+    -->
 
     <!-- Añadir evento popup-->
     <div class="portfolio-modal modal fade" id="addEvent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -254,6 +241,7 @@
         </div>
     </div>
 
+
     <!-- Contacto -->
     <div class="page-section" id="info">
         <div class="container">
@@ -266,12 +254,12 @@
                 </div>
                 <div class="col-md-6">
                     <br />
-                    <br />
-                    <br />
                     <h2>Contacto</h2>
-                    <br />
                     <p>Email: info@ticketpro.es</p>
                     <p>Teléfono: (+34) 6549873219</p>
+                    <br />
+                    <h2>Horario</h2>
+                    <p>De Lunes a Viernes de 10:00 a 14:00 y de 16:00 a 20:00</p>
                 </div>
             </div>
         </div>
@@ -294,6 +282,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <script src="js/scriptsPropio.js"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

@@ -7,32 +7,6 @@
 // Scripts
 // 
 
-function alerta() {
-    let content1 = document.getElementById('portfolio');
-    let content2 = document.getElementById('portfolio2');
-    content1.style.display = 'none';
-    content2.style.display = 'block';
-}
-
-function addPass() {
-    let element = document.getElementById('subelementos');
-    element.innerHTML = `<div class="form-group">
-                            <input class="form-control" id="pass" type="text"
-                                placeholder="Título de la entrada *"
-                                data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="pass:required">
-                                Es necesario un título</div>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" id="price" type="int"
-                                placeholder="Precio de la entrada *"
-                                data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="price:required">
-                                Es necesario un precio</div>
-                        </div>`
-}
-
-
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
