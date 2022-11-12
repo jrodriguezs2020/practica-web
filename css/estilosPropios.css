@@ -1,3 +1,20 @@
 .btnAdd {
     text-align: center;
 }
+
+#info {
+    padding: 3rem 0;
+    margin-bottom: 0rem;
+    height: auto;
+    background-color: #212529;
+    text-align: center;
+    color: #ffffff;
+}
+
+.sectionOwn { /*establece espacio entre botones y el formulario*/
+    margin-top: 8rem;
+}
+
+#portfolio2 {
+    display: none;
+}
