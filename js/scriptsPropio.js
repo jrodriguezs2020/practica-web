@@ -3,8 +3,8 @@
 /* Habrá que hacer el for con la longitud de la lista */
 let events = document.getElementById('showEvents');
 for (let i = 0; i < 5; i++) {
-    events.innerHTML += 
-    `<div class="col-lg-4 col-sm-6 mb-4">
+    events.innerHTML +=
+        `<div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
             <a class="portfolio-link" onclick="showInfo();">
                 <div class="portfolio-hover">
@@ -19,6 +19,26 @@ for (let i = 0; i < 5; i++) {
     </div>`
 };
 
+let pass = document.getElementById('showPass');
+for (let i = 0; i < 3; i++) {
+    pass.innerHTML +=
+        `<div class="col-lg-4 col-sm-6 mb-4">
+        <div class="portfolio-item">
+            <a class="portfolio-link" href="#buyPass"> 
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+            </a>
+            <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Título de la entrada</div>
+            </div>
+        </div>
+    </div>`
+}
+
+
+/* Se puede unir goback con showInfo */
 function goback() {
     let content1 = document.getElementById('portfolio');
     let content2 = document.getElementById('portfolio2');
@@ -49,4 +69,15 @@ function addPass() {
                             <div class="invalid-feedback" data-sb-feedback="price:required">
                                 Es necesario un precio</div>
                         </div>`
+}
+
+/* MENSAJE DE CONFIRMACIÓN */
+function alerta() {
+    var mensaje;
+    var opcion = confirm("Clicka en Aceptar o Cancelar");
+    if (opcion == true) {
+        /* SE GUARDARÁ LA INFORMACIÓN DE LA ENTRADA*/
+    } else {
+        /* SALDRÁ AL MENÚ PRINCIPAL */
+    }
 }
