@@ -1,8 +1,22 @@
+/* ESTRUCTURA DE LOS ELEMENTOS Y SUBELEMENTOS*/
+let eventos = [];
+let entradas = [];
+let entrada1 = {titleEntrada: "VIP", price: 80}
+let entrada2 = {titleEntrada: "General", price: 50}
+
+entradas.push(entrada1);
+entradas.push(entrada2);
+
+let evento1 = {titleEvento: "Madrid Salvaje", descriptionEvento: "El mejor del país", entradas};
+let evento2 = {titleEvento: "Weekend Beach", descriptionEvento: "El peor del país", entradas};
+
+eventos.push(evento1);
+eventos.push(evento2);
+/*----------------------------------------------------------------------------------------------------*/
 
 /*----- Muestra los eventos en la página principal -----*/
-/* Habrá que hacer el for con la longitud de la lista */
 let events = document.getElementById('showEvents');
-for (let i = 0; i < 5; i++) {
+for (let evento of eventos) {
     events.innerHTML +=
         `<div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
@@ -13,14 +27,16 @@ for (let i = 0; i < 5; i++) {
                 <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
             </a>
             <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Título del evento</div>
+            <div class="portfolio-caption-heading">`+ evento.titleEvento +`</div>
             </div>
         </div>
     </div>`
 };
 
+/* Muestra las entradas de cada evento en su sección correspondiente */
+/* necesitará cambios */
 let pass = document.getElementById('showPass');
-for (let i = 0; i < 3; i++) {
+for (let entrada of entradas) {
     pass.innerHTML +=
         `<div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
@@ -31,7 +47,7 @@ for (let i = 0; i < 3; i++) {
                 <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
             </a>
             <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Título de la entrada</div>
+                <div class="portfolio-caption-heading">` + entrada.titleEntrada + `</div>
             </div>
         </div>
     </div>`
