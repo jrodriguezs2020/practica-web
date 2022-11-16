@@ -16,18 +16,18 @@ eventos.push(evento2);
 
 /*----- Muestra los eventos en la página principal -----*/
 let events = document.getElementById('showEvents');
-for (let evento of eventos) {
+for (let i = 0; i < eventos.length; i++) {
     events.innerHTML +=
         `<div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
-            <a class="portfolio-link" onclick="showInfo();">
+            <a class="portfolio-link" onclick="showInfo(${i});">
                 <div class="portfolio-hover">
                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                 </div>
                 <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
             </a>
             <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">`+ evento.titleEvento +`</div>
+            <div class="portfolio-caption-heading">`+ eventos[i].titleEvento +`</div>
             </div>
         </div>
     </div>`
@@ -62,11 +62,15 @@ function goback() {
     content2.style.display = 'none';
 }
 
-function showInfo() {
+function showInfo(i) {
     let content1 = document.getElementById('portfolio');
     let content2 = document.getElementById('portfolio2');
     content1.style.display = 'none';
     content2.style.display = 'block';
+    let titulo = document.getElementById("titleEvent");
+    titulo.innerHTML = eventos[i].titleEvento;
+    let description = document.getElementById("descriptionEvent");
+    description.innerHTML = eventos[i].descriptionEvento;
 }
 
 function addPass() {
