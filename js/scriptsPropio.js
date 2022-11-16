@@ -36,30 +36,47 @@ for (let i = 0; i < eventos.length; i++) {
 /* Muestra las entradas de cada evento en su sección correspondiente */
 /* necesitará cambios */
 let pass = document.getElementById('showPass');
-for (let entrada of entradas) {
+for (let i = 0; i < entradas.length; i++) {
     pass.innerHTML +=
         `<div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
-            <a class="portfolio-link" href="#buyPass"> 
+            <a class="portfolio-link" onclick="showTicket(${i})"> 
                 <div class="portfolio-hover">
                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                 </div>
                 <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
             </a>
             <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">` + entrada.titleEntrada + `</div>
+                <div class="portfolio-caption-heading">` + entradas[i].titleEntrada + `</div>
             </div>
         </div>
     </div>`
 }
 
 
-/* Se puede unir goback con showInfo */
+/* none = ocultar, block = mostrar */
 function goback() {
     let content1 = document.getElementById('portfolio');
     let content2 = document.getElementById('portfolio2');
+    let content3 = document.getElementById('buyPass');
+    if (content1.style.display == 'block'){
+        content1.style.display ='none';
+        content2.style.display = 'block';
+    }
+    if (content2.style.display == 'block'){
+        content2.style.display ='none';
+        content1.style.display = 'block';
+    }
+    if (content3.style.display == 'block'){
+        content3.style.display ='none';
+        content2.style.display = 'block';
+    }
+
+/*
+    let content1 = document.getElementById('portfolio');
+    let content2 = document.getElementById('portfolio2');
     content1.style.display = 'block';
-    content2.style.display = 'none';
+    content2.style.display = 'none';*/
 }
 
 function showInfo(i) {
@@ -71,6 +88,17 @@ function showInfo(i) {
     titulo.innerHTML = eventos[i].titleEvento;
     let description = document.getElementById("descriptionEvent");
     description.innerHTML = eventos[i].descriptionEvento;
+}
+
+function showTicket(i){
+    let content1 = document.getElementById("buyPass");
+    let content2 = document.getElementById("portfolio2");
+    content2.style.display = 'none';
+    content1.style.display = 'block';
+    let titulo = document.getElementById("titleTicket");
+    titulo.innerHTML = entradas[i].titleEntrada;
+    let description = document.getElementById("priceTicket");
+    description.innerHTML = `Precio: ` + entradas[i].price + `€`;
 }
 
 function addPass() {
