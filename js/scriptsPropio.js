@@ -39,6 +39,7 @@ function loadPage() {
 
 function showEvent() {
     let events = document.getElementById('showEvents');
+    //control de eventos (si no hay eventos)
     for (let i = 0; i < eventos.length; i++) {
         events.innerHTML +=
             `<div class="col-lg-4 col-sm-6 mb-4">
@@ -59,10 +60,12 @@ function showEvent() {
 
 /* Muestra las entradas de cada evento en su sección correspondiente */
 /* necesitará cambios */
-let pass = document.getElementById('showPass');
-for (let i = 0; i < entradas.length; i++) {
-    pass.innerHTML +=
-        `<div class="col-lg-4 col-sm-6 mb-4">
+function showTicketsEvent() {
+    let pass = document.getElementById('showPass');
+    //control de entradas (si no hay entradas)
+    for (let i = 0; i < entradas.length; i++) {
+        pass.innerHTML +=
+            `<div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
             <a class="portfolio-link" onclick="showTicket(${i})"> 
                 <div class="portfolio-hover">
@@ -75,6 +78,47 @@ for (let i = 0; i < entradas.length; i++) {
             </div>
         </div>
     </div>`
+    }
+}
+
+function showportfolio2() {
+    let portf = document.getElementById("portfolio2");
+    portf.innerHTML = `<div class="container"> <!--meter en metodo y llamar en showInfo-->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase" id="titleEvent"></h2>
+                    <br></br> <!-- salto de línea-->
+                </div>
+                <!-- Portfolio item 1-->
+                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
+                <br />
+                <div class="text-center">
+                    <p class="text-center" id="descriptionEvent"></p>
+                    <!--<p><strong>Price:</strong>€€</p>-->
+                </div>
+                <!-- ENTRADAS DE EVENTO -->
+                <section class="page-section bg-light" id="portfolio">
+                    <div class="container">
+                        <div class="text-center">
+                            <h2 class="section-heading text-uppercase">Entradas disponibles</h2>
+                            <br></br> <!-- salto de línea-->
+                        </div>
+                        <div class="row" id="showPass">
+                            <!--muestra el array de eventos-->
+            
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Botón añadir evento-->
+        <div class="btnAdd" id="buttons">
+            
+        </div>`
 }
 
 
@@ -108,10 +152,12 @@ function showInfo(i) {
     let content2 = document.getElementById('portfolio2');
     content1.style.display = 'none';
     content2.style.display = 'block';
+    showportfolio2();
     let titulo = document.getElementById("titleEvent");
     titulo.innerHTML = eventos[i].titleEvento;
     let description = document.getElementById("descriptionEvent");
     description.innerHTML = eventos[i].descriptionEvento;
+    showTicketsEvent();
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = `<button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="deleteEvent(${i});">Borrar evento</button>
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" href="#addPass">Añadir
