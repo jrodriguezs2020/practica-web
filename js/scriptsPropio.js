@@ -183,8 +183,9 @@ function showTicket(i) {
     let description = document.getElementById("priceTicket");
     description.innerHTML = `Precio: ` + entradas[i].price + `€`;
 }
-
+let estado = false;
 function addPass() {
+    estado = true;
     let element = document.getElementById('subelementos');
     element.innerHTML = `<br />
                         <div class="form-group">
@@ -276,31 +277,39 @@ function deleteEvent(i) {
 }
 
 function saveEvent() {
+    console.log(estado);
     let message = "¿Está seguro que quiere crear este evento?"
     let option = alerta(message);
     if (option == 1) {
         //recojo información
+        /*meter en subprogramas por un lado evento y por otro entrada*/
+        /*sin entrada en una section y con en otra */
         let titulo = document.getElementById("titleEvent").value;
         let descripcion = document.getElementById("descriptionEvent").value;
-        console.log(titulo);
+        
         if (titulo == "") {
             titulo = "Sin título";
         }
         if (descripcion == "") {
             descripcion = "Sin descripción";
         }
-        /*
-        let tituloEntrada = document.getElementById("titlePass").value;
-        let precio = document.getElementById("pricePass").value;
-        if (tituloEntrada != null) {
-                    let entradaEvent = {titleEntrada: tituloEntrada, price: precio }
-                entradas.push(entradaEvent);
-        }*/
+        console.log(titulo);
         let evento = { titleEvento: titulo, descriptionEvento: descripcion, entradas };
         eventos.push(evento);
+
+        if (estado == true){
+            let tituloEntrada = document.getElementById("titlePass").value;
+            let precio = document.getElementById("pricePass").value;
+            let entradaEvent = {titleEntrada: tituloEntrada, price: precio }
+            entradas.push(entradaEvent);
+            
+
+        }
         loadPage();
         showEvent();
         goback();
+        estado = false;
+        console.log(estado);
     }
     else {
         goback();

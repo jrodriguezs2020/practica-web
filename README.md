@@ -1,6 +1,6 @@
-# práctica fundamentos de la web
+# Práctica fundamentos de la web
 
-Una simple web de venta de entradas
+Una web de venta de entradas
 
 ## 👤 Collaborators
 
