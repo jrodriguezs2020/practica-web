@@ -88,14 +88,14 @@ function showportfolio2() {
         <div class="col-lg-8">
             <div class="modal-body">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase" id="titleEvent"></h2>
+                    <h2 class="section-heading text-uppercase" id="titleInfoEvent"></h2>
                     <br></br> <!-- salto de línea-->
                 </div>
                 <!-- Portfolio item 1-->
                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
                 <br />
                 <div class="text-center">
-                    <p class="text-center" id="descriptionEvent"></p>
+                    <p class="text-center" id="descriptionInfoEvent"></p>
                     <!--<p><strong>Price:</strong>€€</p>-->
                 </div>
                 <!-- ENTRADAS DE EVENTO -->
@@ -158,41 +158,51 @@ function showInfo(i) {
     content1.style.display = 'none';
     content2.style.display = 'block';
     showportfolio2();
-    let titulo = document.getElementById("titleEvent");
+    let titulo = document.getElementById("titleInfoEvent");
     titulo.innerHTML = eventos[i].titleEvento;
-    let description = document.getElementById("descriptionEvent");
+    let description = document.getElementById("descriptionInfoEvent");
     description.innerHTML = eventos[i].descriptionEvento;
     showTicketsEvent();
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = `<button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="deleteEvent(${i});">Borrar evento</button>
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal"
-        onclick="modifyTicket()">Modificar</button>
+        onclick="modifyTicket(${i})">Modificar</button>
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="goback();">Volver
         atrás</button>`
 }
 
-function modifyTicket() {
+function modifyTicket(i) {
     let content1 = document.getElementById('portfolio2');
     let content2 = document.getElementById('addEvent2');
     content1.style.display = 'none';
     content2.style.display = 'block';
+    let evento = eventos[i];
     showForm();
-    let titleInfoMod = document.getElementById("titleInfo");
-    titleInfoMod.innerHTML = "Modificar evento";
+    changesValues(evento);
 
     let element = document.getElementById('subelementos');
     for (let i = 0; i < entradas.length; i++) {
         addPass();
         element.innerHTML += `<button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal">Borrar entrada &#9757;</button>
                                <br />`;
+        
         estado = false;
     }
 
-    let boton = document.getElementById("botones")
+    let boton = document.getElementById("botones");
     boton.innerHTML = `
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="goback();">Volver atrás</button>
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal">Guardar</button>
-    <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" id="addEvent" onclick="addPass();">Añadir entrada</button>`
+    <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" id="addEvent" onclick="addPass();">Añadir entrada</button>`   
+}
+
+function changesValues (evento){
+    let titleInfoMod = document.getElementById("titleInfo");
+    titleInfoMod.innerHTML = "Modificar evento";
+    let titulo = document.getElementById("titleEvent");
+    titulo.value = evento.titleEvento;
+    let descripcion = document.getElementById("descriptionEvent");
+    descripcion.value = evento.descriptionEvento;   
 }
 
 function showTicket(i) {
@@ -215,15 +225,11 @@ function addPass() {
                             <input class="form-control" id="titlePass" type="text"
                                 placeholder="Título de la entrada *"
                                 data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="pass:required">
-                                Es necesario un título</div>
                         </div>
                         <div class="form-group">
                             <input class="form-control" id="pricePass" type="int"
                                 placeholder="Precio de la entrada *"
                                 data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="price:required">
-                                Es necesario un precio</div>
                         </div>`;
     }
     estado = true;
