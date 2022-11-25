@@ -71,7 +71,7 @@ function showTicketsEvent() {
                 <div class="portfolio-hover">
                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                 </div>
-                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
             </a>
             <div class="portfolio-caption">
                 <div class="portfolio-caption-heading">` + entradas[i].titleEntrada + `</div>
@@ -181,28 +181,71 @@ function modifyTicket(i) {
     changesValues(evento);
 
     let element = document.getElementById('subelementos');
-    for (let i = 0; i < entradas.length; i++) {
-        addPass();
-        element.innerHTML += `<button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal">Borrar entrada &#9757;</button>
-                               <br />`;
-        
+    for (let z = 0; z < entradas.length; z++) {
+        element.innerHTML += `<br />
+        <div class="form-group">
+            <input class="form-control" id="titlePass" type="text"
+                placeholder="Título de la entrada *"
+                data-sb-validations="required" value="`+ entradas[z].titleEntrada +`"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="pricePass" type="int"
+                placeholder="Precio de la entrada *"
+                data-sb-validations="required" value="`+ entradas[z].price +`"/>
+        </div>`;
+        //boton borrar entrada
         estado = false;
     }
 
     let boton = document.getElementById("botones");
     boton.innerHTML = `
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="goback();">Volver atrás</button>
-    <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal">Guardar</button>
-    <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" id="addEvent" onclick="addPass();">Añadir entrada</button>`   
+    <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="saveInfo(${i});">Guardar</button>
+    <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" id="addEvent" onclick="addPass();">Añadir entrada</button>`
 }
 
-function changesValues (evento){
+function changesValues(evento) {
     let titleInfoMod = document.getElementById("titleInfo");
     titleInfoMod.innerHTML = "Modificar evento";
     let titulo = document.getElementById("titleEvent");
     titulo.value = evento.titleEvento;
     let descripcion = document.getElementById("descriptionEvent");
-    descripcion.value = evento.descriptionEvento;   
+    descripcion.value = evento.descriptionEvento;
+}
+
+function saveInfo(i){
+    console.log(estado);
+    let message = "¿Está seguro que quiere guardar la informacón modificada?"
+    let option = alerta(message);
+    if (option == 1) {
+        let titulo = document.getElementById("titleEvent").value;
+        let descripcion = document.getElementById("descriptionEvent").value;
+
+        if (titulo == "") {
+            titulo = "Sin título";
+        }
+        if (descripcion == "") {
+            descripcion = "Sin descripción";
+        }
+        
+        eventos[i].titleEvento = titulo;
+        eventos[i].descriptionEvento = descripcion;
+
+        /*if (estado == true) {
+            let tituloEntrada = document.getElementById("titlePass").value;
+            let precio = document.getElementById("pricePass").value;
+            let entradaEvent = { titleEntrada: tituloEntrada, price: precio }
+            entradas.push(entradaEvent);
+        }*/
+
+        loadPage();
+        showEvent();
+        goback();
+        estado = false;
+    }
+    else {
+        goback();
+    }
 }
 
 function showTicket(i) {
