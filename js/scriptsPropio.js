@@ -184,16 +184,15 @@ function modifyTicket(i) {
     for (let z = 0; z < entradas.length; z++) {
         element.innerHTML += `<br />
         <div class="form-group">
-            <input class="form-control" id="titlePass" type="text"
-                placeholder="Título de la entrada *"
-                data-sb-validations="required" value="`+ entradas[z].titleEntrada +`"/>
+            <input class="form-control" id="titlePass`+ z + `" type="text"
+                placeholder="Título de la entrada *" value="`+ entradas[z].titleEntrada + `"/>
         </div>
         <div class="form-group">
-            <input class="form-control" id="pricePass" type="int"
-                placeholder="Precio de la entrada *"
-                data-sb-validations="required" value="`+ entradas[z].price +`"/>
-        </div>`;
-        //boton borrar entrada
+            <input class="form-control" id="pricePass`+ z + `" type="int"
+                placeholder="Precio de la entrada *" value="`+ entradas[z].price + `"/>
+        </div>
+            <div><button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="deleteTicket(${z});">Borrar entrada 	&#9757;</button></div>
+        <br />`;
         estado = false;
     }
 
@@ -202,6 +201,21 @@ function modifyTicket(i) {
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="goback();">Volver atrás</button>
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="saveInfo(${i});">Guardar</button>
     <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" id="addEvent" onclick="addPass();">Añadir entrada</button>`
+}
+
+function deleteTicket(z,i) {
+    let message = "¿Está seguro que quiere borrar esta entrada?"
+    let option = alerta(message);
+    if (option == 1) {
+        entradas.splice(z, 1);
+        let styleTitle = document.getElementById("titlePass" + z);
+        styleTitle.style = "color:red";
+        styleTitle.ariaDisabled;
+        styleTitle.disabled = true;
+        let stylePrice = document.getElementById("pricePass" + z);
+        stylePrice.style = "color:red";
+        stylePrice.disabled = true;
+    }
 }
 
 function changesValues(evento) {
@@ -213,8 +227,7 @@ function changesValues(evento) {
     descripcion.value = evento.descriptionEvento;
 }
 
-function saveInfo(i){
-    console.log(estado);
+function saveInfo(i) {
     let message = "¿Está seguro que quiere guardar la informacón modificada?"
     let option = alerta(message);
     if (option == 1) {
@@ -227,16 +240,23 @@ function saveInfo(i){
         if (descripcion == "") {
             descripcion = "Sin descripción";
         }
-        
+
         eventos[i].titleEvento = titulo;
         eventos[i].descriptionEvento = descripcion;
 
-        /*if (estado == true) {
+        for(let z=0; z<entradas.length; z++){
+            let titleTicket = document.getElementById("titlePass" + z).value;
+            entradas[z].titleEntrada = titleTicket;
+            let priceTicket = document.getElementById("pricePass" + z).value;
+            entradas[z].price = priceTicket;
+        }
+
+        if (estado == true) {
             let tituloEntrada = document.getElementById("titlePass").value;
             let precio = document.getElementById("pricePass").value;
             let entradaEvent = { titleEntrada: tituloEntrada, price: precio }
             entradas.push(entradaEvent);
-        }*/
+        }
 
         loadPage();
         showEvent();
@@ -305,7 +325,7 @@ function showForm() {
                             <section class="page-section" id="contact" style="background-color:#ffffff">
                                 <!--page-section define el espacio entre el titulo y las cajas del form-->
                                 <div class="container">
-                                    <form id="contactForm">
+                                    <div id="contactForm">
                                         <div class="row align-items-stretch mb-5">
                                             <!-- mb-5 define el espacio entre los botones y principio/final-->
                                                 <div class="form-group">
@@ -324,7 +344,7 @@ function showForm() {
                                                 <!--Campos del subelemento-->
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -352,13 +372,9 @@ function deleteEvent(i) {
 }
 
 function saveEvent() {
-    console.log(estado);
     let message = "¿Está seguro que quiere crear este evento?"
     let option = alerta(message);
     if (option == 1) {
-        //recojo información
-        /*meter en subprogramas por un lado evento y por otro entrada*/
-        /*sin entrada en una section y con en otra */
         let titulo = document.getElementById("titleEvent").value;
         let descripcion = document.getElementById("descriptionEvent").value;
 
