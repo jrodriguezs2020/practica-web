@@ -2,10 +2,8 @@
 
 Una web de venta de entradas
 
-## 👤 Collaborators
+## 👤 Collaborator
 
 |          **Name**           | **Github Username** |
 |:---------------------------:|:-------------------:|
-| Carlos Herman Andres Andres |    Carlos-Herman    |
-|       Ali Tarek Tawbe       |       atawbe        |
 |   Javier Rodríguez Salas    |   jrodriguezs2020   |
