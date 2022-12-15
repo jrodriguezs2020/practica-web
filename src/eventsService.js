@@ -21,3 +21,8 @@ export function getPosts(){
 export function getPost(id){
     return posts.get(id);
 }
+
+
+/*
+
+*/
