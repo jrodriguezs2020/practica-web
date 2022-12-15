@@ -56,28 +56,28 @@
             <div class="row" id="showEvents">
                 <!--muestra el array de eventos-->
 
-                {{#posts}}
+                {{#events}}
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="portfolio-item">
-                        <a class="portfolio-link" href="post/{{id}}">
+                        <a class="portfolio-link" href="event/{{id}}">
 	                            <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">{{user}}</div>
+                        <div class="portfolio-caption-heading">{{titleEvent}}</div>
                         </div>
                     </div>
                 </div>
-                {{/posts}}
+                {{/events}}
 
             </div>
         </div>
         <!-- Botón añadir evento-->
         <div class="btnAdd">
-            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick=addTicket();>Añadir
-                evento</button>
+            <a href="new_event.html">Añadir
+                evento</a>
         </div>
     </section>
 

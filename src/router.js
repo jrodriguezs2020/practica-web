@@ -6,15 +6,16 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
     res.render('index', { 
-        posts: boardService.getPosts() 
+        events: boardService.getEvents() 
     });
 });
 
-router.get('/post/:id', (req, res) => {
+router.get('/event/:id', (req, res) => {
 
-    let post = boardService.getPost(req.params.id);
+    let event = boardService.getEvent(req.params.id);
+    let tickets = boardService.getTickets(event);
 
-    res.render('show_event', { post });
+    res.render('show_event', { event , tickets});
 });
 
 export default router;
