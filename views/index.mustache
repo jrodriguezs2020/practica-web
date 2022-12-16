@@ -17,6 +17,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
     <link href="../css/estilosPropios.css" rel="stylesheet" />
+    <script src="/app.js"></script>
 </head>
 
 <body id="page-top">
@@ -53,7 +54,7 @@
                 <h2 class="section-heading text-uppercase">Eventos disponibles</h2>
                 <br></br> <!-- salto de línea-->
             </div>
-            <div class="row" id="showEvents">
+            <div class="row" id="events">
                 <!--muestra el array de eventos-->
 
                 {{#events}}
@@ -76,8 +77,8 @@
         </div>
         <!-- Botón añadir evento-->
         <div class="btnAdd">
-            <a href="new_event.html">Añadir
-                evento</a>
+            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="loadMore()">Cargar más</button>
+            <a href="new_event.html">Añadir evento</a>
         </div>
     </section>
 
