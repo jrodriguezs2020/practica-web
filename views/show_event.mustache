@@ -17,6 +17,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/estilosPropios.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
+    <script src="/app.js"></script>
 </head>
 
 <body id="page-top">
@@ -88,6 +89,13 @@
                                         </div>
                                     </div>
 								{{/tickets}}
+
+                                {{^tickets}}
+                                    <div class="text-center">
+                                        <h3 class="section-heading text-uppercase">No hay entradas disponibles</h3>
+                                        <br></br>
+                                    </div>
+                                {{/tickets}}
                                 </div>
                             </div>
                         </section>
@@ -97,13 +105,14 @@
         </div>
         <!-- Botón añadir evento-->
         <div class="btnAdd" id="buttons">
-            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal"
-               >Borrar evento</button>
-            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal"
-                >Modificar</button>
-            <button class="btn btn-primary btn-xl text-uppercase" data-bs-toggle="modal" onclick="back();">Volver
-                atrás</button>
+            <a class="btn btn-primary btn-xl text-uppercase" href="/event/{{event.id}}/delete" 
+               >Borrar evento</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="modify_event.html"
+                >Modificar</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="/">Volver
+                atrás</a>
         </div>
+        <div id="contenttt"></div>
     </section>
 
     <!-- Contacto -->
