@@ -37,9 +37,10 @@ export function loadSampleData() {
     let e1 = new Evento("Madrid Salvaje", "Si eres uno de los nuestros, este es tu sitio.", tickets1);
     addEvent(e1);
 
+    console.log(e1.ticketsEvent);
+
     let t1 = new Entrada("Abono General", 37);
-    addTicket(t1);
-    
+    addTicket(e1, t1);
 }
 
 loadSampleData();
@@ -50,17 +51,14 @@ export function addEvent(event) {
     idd++;
 }
 
-export function addEvent2(title, description, tickets) {
-    let event = new Event(title, description, tickets);
+export function addEvent2(title, descriptionn) {
+    let tickets = new Map();
+    let event = new Evento(title, descriptionn, tickets);
     event.id = idd.toString();
     events.set(event.id, event);
     idd++;
 }
-/*
-export function getEvents(){
-    return [...events.values()];
-}
-*/
+
 export function getEvents(from, to) {
     let values = [...events.values()];
     if (from !== undefined) {
@@ -74,23 +72,16 @@ export function getEvent(id) {
     return events.get(id);
 }
 
-export function addTicket(ticket) {
-    let event = events.get(0);
+export function addTicket(event, ticket) {
     ticket.id = idt.toString();
-
-    //event.ticketsEvent.set(ticket.id, ticket);
+    event.ticketsEvent.set(ticket.id, ticket);
     //console.log(event.ticketsEvent.size);
-    tickets1.set(ticket.id, ticket);
-    idt++;
-}
-
-export function addTicket1(ticket) {
-    ticket.id = idt.toString();
-    tickets1.set(ticket.id, ticket);
+    //tickets1.set(ticket.id, ticket);
     idt++;
 }
 
 export function getTickets(event) {
+    console.log(event);
     return [...event.ticketsEvent.values()];
 }
 

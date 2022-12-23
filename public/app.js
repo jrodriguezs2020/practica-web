@@ -18,6 +18,21 @@ async function loadMore(){
     loadMoreRequests++;
 }
 
+async function addTicketForm(){
+    const ticketsDiv = document.getElementById("subelementosForm");
+
+    ticketsDiv.innerHTML = `<br />
+    <div class="form-group">
+        <input class="form-control" id="titlePass" type="text"
+            placeholder="Título de la entrada *" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="pricePass" type="int"
+            placeholder="Precio de la entrada *" />
+    </div>`;
+
+}
+
 //----- NavBar -----//
 window.addEventListener('DOMContentLoaded', event => {
 

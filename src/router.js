@@ -1,7 +1,6 @@
 import express from 'express';
 import * as boardService from './eventsService.js';
 import { getEvents } from './eventsService.js';
-import yesno from 'yesno';
 
 const router = express.Router();
 /*
@@ -37,7 +36,9 @@ router.get('/events', (req, res) => {
 
 router.get('/event/:id', (req, res) => {
 
+    console.log(req.params.id);
     let event = boardService.getEvent(req.params.id);
+
     let tickets = boardService.getTickets(event);
 
     res.render('show_event', { event, tickets });
@@ -69,13 +70,22 @@ router.get('/event/:id/deleted', (req, res) => {
 
 router.post('/event/new', (req, res) => {
 
-    let tickets = new Map();
+    let { title, descriptionn } = req.body;
 
-    let { title, description } = req.body;
-
-    boardService.addEvent2(title, description, tickets);
+    boardService.addEvent2(title, descriptionn);
 
     res.render('saved_event');
 });
 
+router.post('/event/:id/modify', (req, res) => {
+/*
+    let { title, description } = req.body;
+
+    console.log(title);
+
+    boardService.addEvent2(title, description);
+*/
+
+    res.render('saved_event');
+});
 export default router;
