@@ -2,6 +2,8 @@ import express from 'express';
 import * as boardService from './eventsService.js';
 import { getEvents } from './eventsService.js';
 
+let p = 0;
+
 const router = express.Router();
 /*
 router.get('/', (req, res) => {
@@ -74,6 +76,12 @@ router.post('/event/new', (req, res) => {
 
     boardService.addEvent2(title, descriptionn);
 
+    if (p == 1){
+        let {titleT, price} = req.body;
+        boardService.addTicket2(titleT, price);
+        p = 0;
+    }
+
     res.render('saved_event');
 });
 
@@ -88,4 +96,14 @@ router.post('/event/:id/modify', (req, res) => {
 
     res.render('saved_event');
 });
+
+router.get('/eventNew', (req, res) => {
+    let info = req.query.info;
+    let response = {
+        p : info
+    }
+    res.json(response);
+    p = 1;
+});
+
 export default router;

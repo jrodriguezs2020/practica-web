@@ -19,15 +19,20 @@ async function loadMore(){
 }
 
 async function addTicketForm(){
+    let info = 1;
+    const response = await fetch(`/eventNew?info=${info}`);
+
+    const infoCheck = await response.json();
+
     const ticketsDiv = document.getElementById("subelementosForm");
 
     ticketsDiv.innerHTML = `<br />
     <div class="form-group">
-        <input class="form-control" id="titlePass" type="text"
+        <input class="form-control" name="titleT" type="text"
             placeholder="Título de la entrada *" />
     </div>
     <div class="form-group">
-        <input class="form-control" id="pricePass" type="int"
+        <input class="form-control" name="price" type="int"
             placeholder="Precio de la entrada *" />
     </div>`;
 

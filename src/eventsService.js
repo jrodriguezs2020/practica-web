@@ -1,6 +1,6 @@
 const events = new Map();
 const tickets1 = new Map();
-const tickets2 = new Map();
+let last;
 
 class Evento {
     constructor(titleEvent, descriptionEvent, ticketsEvent) {
@@ -57,6 +57,7 @@ export function addEvent2(title, descriptionn) {
     event.id = idd.toString();
     events.set(event.id, event);
     idd++;
+    last = event;
 }
 
 export function getEvents(from, to) {
@@ -72,11 +73,17 @@ export function getEvent(id) {
     return events.get(id);
 }
 
+export function addTicket2(titleT, price) {
+    let event = last;
+    let ticket = new Entrada (titleT, price);
+    ticket.id = idt.toString();
+    event.ticketsEvent.set(ticket.id, ticket);
+    idt++;
+}
+
 export function addTicket(event, ticket) {
     ticket.id = idt.toString();
     event.ticketsEvent.set(ticket.id, ticket);
-    //console.log(event.ticketsEvent.size);
-    //tickets1.set(ticket.id, ticket);
     idt++;
 }
 
