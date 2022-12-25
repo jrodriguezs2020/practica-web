@@ -5,14 +5,6 @@ import { getEvents } from './eventsService.js';
 let p = 0;
 
 const router = express.Router();
-/*
-router.get('/', (req, res) => {
-
-    res.render('index', { 
-        events: boardService.getEvents() 
-    });
-});
-*/
 
 router.get('/', (req, res) => {
 
@@ -38,7 +30,6 @@ router.get('/events', (req, res) => {
 
 router.get('/event/:id', (req, res) => {
 
-    console.log(req.params.id);
     let event = boardService.getEvent(req.params.id);
 
     let tickets = boardService.getTickets(event);

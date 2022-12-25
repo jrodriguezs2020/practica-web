@@ -37,8 +37,6 @@ export function loadSampleData() {
     let e1 = new Evento("Madrid Salvaje", "Si eres uno de los nuestros, este es tu sitio.", tickets1);
     addEvent(e1);
 
-    console.log(e1.ticketsEvent);
-
     let t1 = new Entrada("Abono General", 37);
     addTicket(e1, t1);
 }
@@ -88,7 +86,6 @@ export function addTicket(event, ticket) {
 }
 
 export function getTickets(event) {
-    console.log(event);
     return [...event.ticketsEvent.values()];
 }
 
