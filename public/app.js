@@ -35,7 +35,18 @@ async function addTicketForm(){
         <input class="form-control" name="price" type="int"
             placeholder="Precio de la entrada *" />
     </div>`;
+}
 
+async function deleteTicket(id){
+
+    console.log(id);
+    const styleTitle = document.getElementById("titlePass" + id);
+        styleTitle.style = "color:red";
+        styleTitle.ariaDisabled;
+        styleTitle.disabled = true;
+    const stylePrice = document.getElementById("pricePass" + id);
+        stylePrice.style = "color:red";
+        stylePrice.disabled = true;
 }
 
 //----- NavBar -----//

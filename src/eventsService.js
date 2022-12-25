@@ -85,6 +85,13 @@ export function addTicket(event, ticket) {
     idt++;
 }
 
+export function addTicket3(event, titleT, price) {
+    let ticket = new Entrada(titleT, price);
+    ticket.id = idt.toString();
+    event.ticketsEvent.set(ticket.id, ticket);
+    idt++;
+}
+
 export function getTickets(event) {
     return [...event.ticketsEvent.values()];
 }
@@ -95,6 +102,15 @@ export function getTicket(event, id) {
 
 export function deleteEvent(id) {
     return events.delete(id);
+}
+
+export function changeValues(event, title, descriptionn) {
+    event.titleEvent = title;
+    event.descriptionEvent = descriptionn;
+}
+
+export function deleteTicket(event, id) {
+    return event.ticketsEvent.delete(id);
 }
 
 /* como tener solo un addticket para todos los eventos */
