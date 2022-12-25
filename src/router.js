@@ -76,14 +76,7 @@ router.post('/event/new', (req, res) => {
     res.render('saved_event');
 });
 
-router.post('/event/:id/modify', (req, res) => {
-/*
-    let { title, description } = req.body;
-
-    console.log(title);
-
-    boardService.addEvent2(title, description);
-*/
+router.post('/event/modify', (req, res) => {
 
     res.render('saved_event');
 });
