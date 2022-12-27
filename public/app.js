@@ -37,14 +37,25 @@ async function addTicketForm(){
     </div>`;
 }
 
-async function deleteTicket(id){
+async function deleteTicket(idd, id){
 
+    let info = id;
+    console.log(idd);
     console.log(id);
+
+    const response2 = await fetch(`/eventGet?info=${idd}`);
+        
+    const infoCheck2 = await response2.json();
+
+    const response = await fetch(`/ticketDelete?info=${info}`);
+
+    const infoCheck = await response.json();
+
     const styleTitle = document.getElementById("titlePass" + id);
         styleTitle.style = "color:red";
         styleTitle.ariaDisabled;
         styleTitle.disabled = true;
-    const stylePrice = document.getElementById("pricePass" + id);
+        const stylePrice = document.getElementById("pricePass" + id);
         stylePrice.style = "color:red";
         stylePrice.disabled = true;
 }

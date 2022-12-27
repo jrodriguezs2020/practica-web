@@ -89,6 +89,15 @@ router.post('/event/:id/modified', (req, res) => {
 
     boardService.changeValues(event, title,descriptionn);
 
+    let tickets = boardService.getTickets(event);
+
+    /*for(let key of tickets.keys()){
+        console.log(key);
+        //document.getElementById('titlePass' + key);
+        let {titlePT} = req.body;
+        console.log(titlePT.key);
+    }*/
+
     if (p == 1){    
         let {titleT, price} = req.body;
         boardService.addTicket3(event, titleT, price);
@@ -98,6 +107,7 @@ router.post('/event/:id/modified', (req, res) => {
     res.render('saved_event');
 });
 
+/*
 router.get('/event/:id/delete/:idt', (req, res) => {
     
     let event = boardService.getEvent(req.params.id);
@@ -106,6 +116,7 @@ router.get('/event/:id/delete/:idt', (req, res) => {
 
     boardService.deleteTicket(event, idt);
 });
+*/
 
 router.get('/eventNew', (req, res) => {
     let info = req.query.info;
@@ -116,13 +127,25 @@ router.get('/eventNew', (req, res) => {
     p = 1;
 });
 
+let a;
+let e;
+
 router.get('/ticketDelete', (req, res) => {
-    let id = req.query.info;
-    let event = boardService.getEvent("0");
-    console.log(event);
-    boardService.deleteTicket(event, id);
+    let info = req.query.info;
+    let event = e;
+    boardService.deleteTicket(event, info.toString());
     let response = {
-        "Borrao" :id
+        a :info
+    }
+    res.json(response);
+});
+
+router.get('/eventGet', (req, res) => {
+    let info = req.query.info;
+    let event = boardService.getEvent(info);
+    e = event;
+    let response = {
+        a :info
     }
     res.json(response);
 });
