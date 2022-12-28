@@ -65,10 +65,23 @@ router.post('/event/new', (req, res) => {
 
     let { title, descriptionn } = req.body;
 
+    if(title == ""){
+        title = "Sin título";
+    }
+    if(descriptionn == ""){
+        descriptionn = "Sin descripción";
+    }
+
     boardService.addEvent2(title, descriptionn);
 
     if (p == 1){
         let {titleT, price} = req.body;
+        if(titleT == ""){
+            titleT = "Sin título";
+        }
+        if(price == ""){
+            price = 100;
+        }
         boardService.addTicket2(titleT, price);
         p = 0;
     }
@@ -87,6 +100,13 @@ router.post('/event/:id/modified', (req, res) => {
     let event = boardService.getEvent(req.params.id);
     let {title, descriptionn} = req.body;
 
+    if(title == ""){
+        title = "Sin título";
+    }
+    if(descriptionn == ""){
+        descriptionn = "Sin descripción";
+    }
+
     boardService.changeValues(event, title,descriptionn);
 
     let tickets = boardService.getTickets(event);
@@ -100,6 +120,12 @@ router.post('/event/:id/modified', (req, res) => {
 
     if (p == 1){    
         let {titleT, price} = req.body;
+        if(titleT == ""){
+            titleT = "Sin título";
+        }
+        if(price == ""){
+            price = 100;
+        }
         boardService.addTicket3(event, titleT, price);
         p = 0;
     }
