@@ -111,12 +111,14 @@ router.post('/event/:id/modified', (req, res) => {
 
     let tickets = boardService.getTickets(event);
 
-    /*for(let key of tickets.keys()){
-        console.log(key);
-        //document.getElementById('titlePass' + key);
-        let {titlePT} = req.body;
-        console.log(titlePT.key);
-    }*/
+    let ticket = req.body;
+
+    for(let key of tickets.keys()){
+        let titleT = ticket.titlePass;
+        let price = ticket.pricePass;
+        let id = ticket.hola[key];
+        boardService.changeValuesTickets(event, titleT, price, id);
+    }
 
     if (p == 1){    
         let {titleT, price} = req.body;
@@ -132,17 +134,6 @@ router.post('/event/:id/modified', (req, res) => {
 
     res.render('saved_event');
 });
-
-/*
-router.get('/event/:id/delete/:idt', (req, res) => {
-    
-    let event = boardService.getEvent(req.params.id);
-
-    let idt = req.params.idt;
-
-    boardService.deleteTicket(event, idt);
-});
-*/
 
 router.get('/eventNew', (req, res) => {
     let info = req.query.info;

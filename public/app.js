@@ -40,8 +40,6 @@ async function addTicketForm(){
 async function deleteTicket(idd, id){
 
     let info = id;
-    console.log(idd);
-    console.log(id);
 
     const response2 = await fetch(`/eventGet?info=${idd}`);
         
@@ -51,14 +49,16 @@ async function deleteTicket(idd, id){
 
     const infoCheck = await response.json();
 
-    const styleTitle = document.getElementById("titlePass" + id);
+    const styleTitle = document.getElementById("title" + id);
         styleTitle.style = "color:red";
         styleTitle.ariaDisabled;
         styleTitle.disabled = true;
-        const stylePrice = document.getElementById("pricePass" + id);
+        const stylePrice = document.getElementById("price" + id);
         stylePrice.style = "color:red";
         stylePrice.disabled = true;
 }
+
+
 
 //----- NavBar -----//
 window.addEventListener('DOMContentLoaded', event => {

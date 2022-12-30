@@ -1,5 +1,6 @@
 const events = new Map();
 const tickets1 = new Map();
+const tickets2 = new Map();
 let last;
 
 class Evento {
@@ -37,8 +38,17 @@ export function loadSampleData() {
     let e1 = new Evento("Madrid Salvaje", "Si eres uno de los nuestros, este es tu sitio.", tickets1);
     addEvent(e1);
 
+    let e2 = new Evento("Madrid", "Si eres uno de los nuestros, este es tu sitio.", tickets2);
+    addEvent(e2);
+
+    let t3 = new Entrada("Manolo", 137);
+    addTicket(e2, t3);
+
     let t1 = new Entrada("Abono General", 37);
     addTicket(e1, t1);
+
+    let t2 = new Entrada("VIP", 137);
+    addTicket(e1, t2);
 }
 
 loadSampleData();
@@ -108,6 +118,22 @@ export function changeValues(event, title, descriptionn) {
     event.titleEvent = title;
     event.descriptionEvent = descriptionn;
 }
+
+export function changeValuesTickets(event, title, priceT, id) {
+    let ticket = event.ticketsEvent.get(id);
+    if(ticket != undefined){
+        ticket.titleTicket = title;
+        ticket.price = priceT;
+    }  
+}
+
+export function ola(event, key) {
+    let k = event.ticketsEvent.keys();
+    for(let value of k.values()){
+        console.log(value);
+    }
+}
+
 
 export function deleteTicket(event, id) {
     return event.ticketsEvent.delete(id);
