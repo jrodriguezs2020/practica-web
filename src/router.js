@@ -114,9 +114,10 @@ router.post('/event/:id/modified', (req, res) => {
     let ticket = req.body;
 
     for(let key of tickets.keys()){
-        let titleT = ticket.titlePass;
-        let price = ticket.pricePass;
+        let titleT = ticket.titlePass[key];
+        let price = ticket.pricePass[key];
         let id = ticket.hola[key];
+        console.log(key);
         boardService.changeValuesTickets(event, titleT, price, id);
     }
 

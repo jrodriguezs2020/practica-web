@@ -49,6 +49,7 @@ export function loadSampleData() {
 
     let t2 = new Entrada("VIP", 137);
     addTicket(e1, t2);
+    addTicket(e1, t3);
 }
 
 loadSampleData();
@@ -138,5 +139,3 @@ export function ola(event, key) {
 export function deleteTicket(event, id) {
     return event.ticketsEvent.delete(id);
 }
-
-/* como tener solo un addticket para todos los eventos */
