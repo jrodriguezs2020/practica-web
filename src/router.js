@@ -105,17 +105,26 @@ router.post('/event/:id/modified', (req, res) => {
     let tickets = boardService.getTickets(event);
 
     let ticket = req.body;
-    console.log(ticket);
-    
-    for (let key = 0; key < tickets.length; key++) {
-        let id = ticket.hola[key]; /*cuando hay mas de 10 falla con  [key] */
-        console.log(id);
-        let titleT = ticket.titlePass[key];
-        console.log(titleT);
-        let price = ticket.pricePass[key];
 
+    if (tickets.length > 1) {
+        for (let key = 0; key < tickets.length; key++) {
+            let id = ticket.ids[key];
+            let titleT = ticket.titlePass[key];
+            let price = ticket.pricePass[key];
+            console.log(titleT);
+            console.log(id);
+            boardService.changeValuesTickets(event, titleT, price, id);
+        }
+    }
+    else {
+        let id = ticket.ids;
+        let titleT = ticket.titlePass;
+        let price = ticket.pricePass;
+        console.log(titleT);
+        console.log(id);
         boardService.changeValuesTickets(event, titleT, price, id);
     }
+
 
     if (p == 1) {
         let { titleT, price } = req.body;
