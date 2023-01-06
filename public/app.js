@@ -1,4 +1,4 @@
-const NUM_RESULTS = 3;
+const NUM_RESULTS = 5;
 
 let loadMoreRequests = 0;
 
@@ -16,6 +16,24 @@ async function loadMore(){
     EventsDiv.innerHTML += newEvents;
 
     loadMoreRequests++;
+}
+
+async function alerta(info) {
+    let click;
+    let opcion = confirm("¿Seguro que quiere borrar el evento?");
+    if (opcion == true) {
+        click = 1; //1 si pulsa aceptar
+    } else {
+        click = 0; //0 si pulsa cancelar
+    }
+    
+    if(click == 1){
+        const response = await fetch(`/eventDelete?info=${info}`);
+
+        const infoCheck = await response.json();
+        
+        window.location.href = '/';
+    }
 }
 
 async function addTicketForm(){

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-    const events = getEvents(0, 3);
+    const events = getEvents(0, 5);
 
     res.render('index', {
         events: events
@@ -46,100 +46,97 @@ router.get('/event/:id/showTicket/:idt', (req, res) => {
     res.render('show_ticket', { event, ticket });
 });
 
-router.get('/event/:id/delete', (req, res) => {
-    
-    let event = boardService.getEvent(req.params.id);
-
-    res.render('delete_event', {event});
-});
-
-router.get('/event/:id/deleted', (req, res) => {
-
-    boardService.deleteEvent(req.params.id);
-
-    res.render('saved_event');
-
+router.get('/eventDelete', (req, res) => {
+    let id = req.query.info;
+    let event = boardService.deleteEvent(id);
+    let response = {
+        a: id
+    }
+    res.json(response);
 });
 
 router.post('/event/new', (req, res) => {
 
     let { title, descriptionn } = req.body;
 
-    if(title == ""){
+    if (title == "") {
         title = "Sin título";
     }
-    if(descriptionn == ""){
+    if (descriptionn == "") {
         descriptionn = "Sin descripción";
     }
 
     boardService.addEvent2(title, descriptionn);
 
-    if (p == 1){
-        let {titleT, price} = req.body;
-        if(titleT == ""){
+    if (p == 1) {
+        let { titleT, price } = req.body;
+        if (titleT == "") {
             titleT = "Sin título";
         }
-        if(price == ""){
+        if (price == "") {
             price = 100;
         }
         boardService.addTicket2(titleT, price);
         p = 0;
     }
-
-    res.render('saved_event');
+    res.redirect('/');
 });
 
 router.get('/event/:id/modify', (req, res) => {
     let event = boardService.getEvent(req.params.id);
     let tickets = boardService.getTickets(event);
-    res.render('modify_event', {event, tickets});
+    res.render('modify_event', { event, tickets });
 });
 
 router.post('/event/:id/modified', (req, res) => {
 
     let event = boardService.getEvent(req.params.id);
-    let {title, descriptionn} = req.body;
+    let { title, descriptionn } = req.body;
 
-    if(title == ""){
+    if (title == "") {
         title = "Sin título";
     }
-    if(descriptionn == ""){
+    if (descriptionn == "") {
         descriptionn = "Sin descripción";
     }
 
-    boardService.changeValues(event, title,descriptionn);
+    boardService.changeValues(event, title, descriptionn);
 
     let tickets = boardService.getTickets(event);
 
     let ticket = req.body;
-
-    for(let key of tickets.keys()){
+    console.log(ticket);
+    
+    for (let key = 0; key < tickets.length; key++) {
+        let id = ticket.hola[key]; /*cuando hay mas de 10 falla con  [key] */
+        console.log(id);
         let titleT = ticket.titlePass[key];
+        console.log(titleT);
         let price = ticket.pricePass[key];
-        let id = ticket.hola[key];
-        console.log(key);
+
         boardService.changeValuesTickets(event, titleT, price, id);
     }
 
-    if (p == 1){    
-        let {titleT, price} = req.body;
-        if(titleT == ""){
+    if (p == 1) {
+        let { titleT, price } = req.body;
+        if (titleT == "") {
             titleT = "Sin título";
         }
-        if(price == ""){
+        if (price == "") {
             price = 100;
         }
         boardService.addTicket3(event, titleT, price);
         p = 0;
     }
 
-    res.render('saved_event');
+    let id = req.params.id;
+    res.redirect('/event/' + id);
 });
 
 router.get('/eventNew', (req, res) => {
     let info = req.query.info;
     let response = {
-        p : info
+        p: info
     }
     res.json(response);
     p = 1;
@@ -153,7 +150,7 @@ router.get('/ticketDelete', (req, res) => {
     let event = e;
     boardService.deleteTicket(event, info.toString());
     let response = {
-        a :info
+        a: info
     }
     res.json(response);
 });
@@ -163,7 +160,7 @@ router.get('/eventGet', (req, res) => {
     let event = boardService.getEvent(info);
     e = event;
     let response = {
-        a :info
+        a: info
     }
     res.json(response);
 });

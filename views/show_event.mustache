@@ -64,8 +64,7 @@
         </div>
         <!-- Botón añadir evento-->
         <div class="btnAdd" id="buttons">
-            <a class="btn btn-primary btn-xl text-uppercase" href="/event/{{event.id}}/delete" 
-               >Borrar evento</a>
+            <button class="btn btn-primary btn-xl text-uppercase" onclick="alerta({{event.id}});">Borrar evento</button>
             <a class="btn btn-primary btn-xl text-uppercase" href="/event/{{event.id}}/modify"
                 >Modificar</a>
             <a class="btn btn-primary btn-xl text-uppercase" href="/">Volver
