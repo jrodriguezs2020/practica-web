@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body id="page-top">
+    {{> navigation}}
+
+    <!-- Portfolio Grid-->
+    <section class="page-section bg-light" id="portfolio2">
+        <!-- showInfo() -->
+        <div class="container"> <!--meter en metodo y llamar en showInfo-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <h2 class="section-heading text-uppercase" id="titleInfoEvent">{{event.titleEvent}}</h2>
+                            <br></br> <!-- salto de línea-->
+                        </div>
+                        <!-- Portfolio item 1-->
+                        <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/1.jpg" alt="..." />
+                        <br />
+                        <div class="text-center">
+                            <p class="text-center" id="descriptionInfoEvent">{{event.descriptionEvent}}</p>
+                            <!--<p><strong>Price:</strong>€€</p>-->
+                        </div>
+                        <!-- ENTRADAS DE EVENTO -->
+                        <section class="page-section bg-light" id="portfolio">
+                            <div class="container">
+                                <div class="text-center">
+                                    <h2 class="section-heading text-uppercase">Entradas disponibles</h2>
+                                    <br></br> <!-- salto de línea-->
+                                </div>
+                                <div class="row" id="showPass">
+                                    <!--muestra el array de eventos-->
+								{{#tickets}}
+                                    <div class="col-lg-4 col-sm-6 mb-4">
+                                        <div class="portfolio-item">
+                                            <a class="portfolio-link" href="/event/{{event.id}}/showTicket/{{id}}"> 
+                                                <div class="portfolio-hover">
+                                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                                </div>
+                                                <img class="img-fluid" src="../assets/img/portfolio/2.jpg" alt="..." />
+                                            </a>
+                                            <div class="portfolio-caption">
+                                                <div class="portfolio-caption-heading">{{titleTicket}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+								{{/tickets}}
+
+                                {{^tickets}}
+                                    <div class="text-center">
+                                        <h3 class="section-heading text-uppercase">No hay entradas disponibles</h3>
+                                        <br></br>
+                                    </div>
+                                {{/tickets}}
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Botón añadir evento-->
+        <div class="btnAdd" id="buttons">
+            <button class="btn btn-primary btn-xl text-uppercase" onclick="alerta({{event.id}});">Borrar evento</button>
+            <a class="btn btn-primary btn-xl text-uppercase" href="/event/{{event.id}}/modify"
+                >Modificar</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="/">Volver
+                atrás</a>
+        </div>
+        <div id="contenttt"></div>
+    </section>
+
+    {{> footer}}
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
+</html>

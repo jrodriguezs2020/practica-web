@@ -20,8 +20,7 @@ function pdff(doc) {
     doc.text(advertencia, 20, 200);
 }
 
-function save(i) {
-    console.log(i);
+async function save(){
     var doc = new jsPDF();
     pdff(doc);
     doc.save("Entradas.pdf");
